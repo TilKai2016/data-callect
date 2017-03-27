@@ -1,2 +1,3 @@
 rootProject.name = 'data-collect'
+include 'data-from-sqlserver'
 

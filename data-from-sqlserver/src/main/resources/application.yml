@@ -1,0 +1,48 @@
+spring:
+  profiles:
+    active: dev
+  output:
+    ansi:
+      enabled: always
+
+---
+
+spring:
+  profiles: dev
+  cache:
+    type: simple
+  session:
+    store-type: jdbc
+    type: header
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost:1433;DatabaseName=DB
+    username: username
+    password: password
+  jpa:
+    properties:
+      ddl-auto: validate
+
+server:
+  session:
+    timeout: 604800
+
+logging:
+  level:
+    root: WARN
+    com.tsingyun: INFO
+    org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: ERROR
