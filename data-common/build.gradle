@@ -1,0 +1,18 @@
+apply from: COMMON_GRADLE
+
+jar {
+    baseName = 'dataAcquisition'
+    version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    maven {
+        url 'http://maven.solarule.cn/artifactory/libs-release'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.9'
+}
