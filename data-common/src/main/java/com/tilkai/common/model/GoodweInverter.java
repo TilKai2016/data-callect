@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 
 /**
+ * 逆变器Model
  * @author tilkai
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)

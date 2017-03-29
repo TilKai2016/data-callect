@@ -1,4 +1,4 @@
-package com.tilkai.service;
+package com.tilkai.client.service;
 
 import com.tilkai.common.model.GoodweInverter;
 

@@ -1,7 +1,7 @@
-package com.tilkai.service;
+package com.tilkai.client.service;
 
+import com.tilkai.client.dao.GoodweInverterRepository;
 import com.tilkai.common.model.GoodweInverter;
-import com.tilkai.dao.GoodweInverterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

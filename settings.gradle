@@ -1,5 +1,4 @@
 rootProject.name = 'data-collect'
-include 'data-from-sqlserver'
 include 'data-common'
 include 'data-send-client'
 

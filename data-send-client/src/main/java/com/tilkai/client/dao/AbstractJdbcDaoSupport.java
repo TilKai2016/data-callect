@@ -1,4 +1,4 @@
-package com.tilkai.dao;
+package com.tilkai.client.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -26,7 +26,7 @@ public class Client {
         List<GoodweInverter> goodweInverters = sendGoodweInverterService.getGoodweInverterList();
 
         for (GoodweInverter goodweInverter : goodweInverters) {
-
+            sendGoodweInverterService.sendGoodweInverter(goodweInverter);
         }
     }
 }

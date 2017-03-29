@@ -1,7 +1,6 @@
 package com.tilkai.client.service;
 
 import com.tilkai.common.model.GoodweInverter;
-import com.tilkai.service.GoodweInverterService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,18 +29,20 @@ public class SendGoodweInverterServiceImpl implements SendGoodweInverterService 
         Calendar calendar = Calendar.getInstance();
 
         SimpleDateFormat monthFormat = new SimpleDateFormat("yyyyMM");
-        SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         StringBuffer tableName = new StringBuffer();
 
         tableName.append("TInventerData");
         tableName.append(monthFormat.format(calendar.getTime()));
 
+        calendar.add(Calendar.MINUTE, - 1);
+
         String endTime = timeFormat.format(calendar.getTime());
 
-        calendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE) - delay);
+        calendar.add(Calendar.MINUTE, - delay - 1);
 
-        String startTime = timeFormat.format(calendar);
+        String startTime = timeFormat.format(calendar.getTime());
 
         return goodweInverterService.getGoodweInverterListByTime(tableName.toString(), startTime, endTime);
 
