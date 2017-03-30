@@ -36,27 +36,28 @@ public class GoodweInverterRepository extends AbstractJdbcDaoSupport {
         StringBuffer sql = new StringBuffer();
 
         sql.append(" SELECT ");
-        sql.append("   * ");
+        sql.append("   t1.* ");
         sql.append(" FROM ");
-        sql.append(    tableName + " t1 " );
+        sql.append(    tableName + " t1, ");
+        sql.append("  (SELECT ");
+        sql.append("     InventerSN, ");
+        sql.append("     MAX(CreationDate) CreationDate ");
+        sql.append("   FROM ");
+        sql.append(      tableName );
+        sql.append("   WHERE ");
+        sql.append("     CreationDate ");
+        sql.append("   BETWEEN ");
+        sql.append(      " '" + startTime + "' " );
+        sql.append("   AND ");
+        sql.append(      " '" + endTime + "' " );
+        sql.append("   GROUP BY ");
+        sql.append("     InventerSN) t2 ");
         sql.append(" WHERE ");
+        sql.append("   t1.InventerSN = t2.InventerSN ");
+        sql.append(" AND ");
+        sql.append("   t1.CreationDate = t2.CreationDate ");
+        sql.append(" ORDER BY ");
         sql.append("   t1.CreationDate ");
-        sql.append(" BETWEEN ");
-        sql.append(" '" +   startTime + "' " );
-        sql.append(" AND ");
-        sql.append(" '" +    endTime + "' " );
-        sql.append(" AND ");
-        sql.append(" NOT EXISTS ( ");
-        sql.append("    SELECT ");
-        sql.append("      * ");
-        sql.append("    FROM ");
-        sql.append(       tableName + " t2 ");
-        sql.append("    WHERE ");
-        sql.append("      t1.InventerSN = t2.InventerSN ");
-        sql.append("    AND ");
-        sql.append("      t1.CreationDate > t2.CreationDate ");
-        sql.append(" ) ORDER BY ");
-        sql.append("   t1.CreationDate ASC ");
 
 
         return jdbcTemplate.query(sql.toString(), (rs, rowNum) -> {

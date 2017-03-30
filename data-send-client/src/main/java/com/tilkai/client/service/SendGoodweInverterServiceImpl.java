@@ -40,7 +40,7 @@ public class SendGoodweInverterServiceImpl implements SendGoodweInverterService 
 
         String endTime = timeFormat.format(calendar.getTime());
 
-        calendar.add(Calendar.MINUTE, - delay - 1);
+        calendar.add(Calendar.MINUTE, - delay/6000);
 
         String startTime = timeFormat.format(calendar.getTime());
 

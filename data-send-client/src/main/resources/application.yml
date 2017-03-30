@@ -37,6 +37,11 @@ spring:
   jpa:
     properties:
       ddl-auto: validate
+  rabbitmq:
+    host: 192.168.1.9
+    port: 5672
+    username: guest
+    password: guest
 
 server:
   session:
