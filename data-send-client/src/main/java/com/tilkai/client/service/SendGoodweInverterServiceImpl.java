@@ -1,6 +1,8 @@
 package com.tilkai.client.service;
 
 import com.tilkai.common.model.GoodweInverter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ import static com.tilkai.client.config.AmqpConfig.delay;
  */
 @Service
 public class SendGoodweInverterServiceImpl implements SendGoodweInverterService {
+
+    Logger log = LoggerFactory.getLogger(SendGoodweInverterServiceImpl.class);
 
     @Autowired
     private GoodweInverterService goodweInverterService;
@@ -52,6 +56,8 @@ public class SendGoodweInverterServiceImpl implements SendGoodweInverterService 
     public void sendGoodweInverter(GoodweInverter goodweInverter) {
         if (goodweInverter != null) {
             this.rabbitTemplate.convertAndSend("hpvm.data", goodweInverter);
+
+            log.info("****** 向队列接收端发送了数据，SN为 ： ******" + goodweInverter.getSn());
         }
     }
 }
