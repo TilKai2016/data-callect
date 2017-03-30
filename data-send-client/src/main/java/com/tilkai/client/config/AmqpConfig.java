@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AmqpConfig {
 
-    public final static int delay = 60000;
+    public final static int delay = 6000;
 
     @Bean
     MessageConverter jackson2JsonMessageConverter() {return new Jackson2JsonMessageConverter();}
